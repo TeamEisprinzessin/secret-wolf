@@ -58,6 +58,7 @@ if ($conn->query($sql) === TRUE) {
 
 // Close Connection
 $conn->close();
+setcookie("username", $gameusername, time()+86400);
 
 echo $_POST[''];
 
