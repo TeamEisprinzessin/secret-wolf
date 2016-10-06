@@ -45,7 +45,15 @@ reg_date TIMESTAMP
 //$message	= 'How Can Mirrors Be Real If Our Eyes Arent Real';
 // WARNING/To-Do: Problems with Apostrophes etc. for writing into MySQL
 
+// Check if variables already exist in table of database
+$sql = "SELECT id";
+
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {}
+
 // Write into Database
+
 $sql = "INSERT INTO $gamename (username, playernumber)
 VALUES ('$gameusername', '$playernumber')";
 
@@ -60,6 +68,11 @@ if ($conn->query($sql) === TRUE) {
 $conn->close();
 setcookie("username", $gameusername, time()+86400);
 
+if(!isset($_COOKIE['username'])) {
+	print 'Cookie doesnt exist';
+} else{
+	print 'Cookie exists';
+}
 echo $_POST[''];
 
 ?>
