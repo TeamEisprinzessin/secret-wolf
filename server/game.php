@@ -9,7 +9,7 @@
 	<meta name="description" content="Very Game, Much Secret, Many Awesome">
 
 	<link rel="stylesheet" type="text/css" href="style.css" media="screen">
-	<link href="https://fonts.googleapis.ycom/css?family=UnifrakturMaguntia" rel="stylesheet" type='text/css'>
+	<link href="https://fonts.googleapis.com/css?family=UnifrakturMaguntia" rel="stylesheet" type='text/css'>
 </head>
 
 <body>
