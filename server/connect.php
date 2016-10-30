@@ -1,83 +1,92 @@
-<html>
+<!-- index.php -->
+<!DOCTYPE html>
+
+<html lang="de">
+
 <head>
+	<meta charset="utf-8">
+	<title>Secret Wolf</title>
+	<meta name="description" content="Very Game, Much Secret, Many Awesome">
+
+	<link rel="stylesheet" type="text/css" href="style.css" media="screen">
+	<link href="https://fonts.googleapis.com/css?family=UnifrakturMaguntia" rel="stylesheet" type='text/css'>
 </head>
 
 <body>
-<?php
+	<div class="wrapper">
 
+		<div class="header">
+			<?php
+			echo '<p>Session: ' . $_POST['session'] . '</p>';
+			echo '<p>Seat: ' . $_POST['seat'] . '</p>';
+			echo '<p>Name: ' . $_POST['name'] . '</p>';
+			?>
+		</div>
+
+		<div class="content">
+<?php
 
 // Create Connection to MySQL-Database
 include "credentials.php";
+$session = $_POST['session'];
+$seat = $_POST['seat'];
+$name = $_POST['name'];
 
-$gamename = $_POST['gamename'];
-$gameusername = $_POST['username'];
-$playernumber = $_POST['playernumber'];
-$conn = new mysqli($servername, $username, $password, $dbname);
+$mysqli = new mysqli($servername, $username, $password, $dbname);
 
-if ($conn->connect_error)  {
-	die("Connection failed: " . $conn->connect_error);
+if (mysqli_connect_errno()) {
+	die("Connection failed: " . mysqli_connect_error());
 }
 
-//if ($result = $mysqli->query("SHOW TABLES LIKE '".$gamename."'")) {
+//if ($result = $mysqli->query("SHOW TABLES LIKE '".$session."'")) {
+//		die("asdf");
 //		if ($result->num_rows == 1) {
-//		echo "Spiel beigetreten";
+//			echo "Joined Session";
 //		}
-//		echo "Test";
-//	} else {
-// sql to create table
-$sql = "CREATE TABLE $gamename (
-id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-username VARCHAR(30) NOT NULL,
-playernumber INT(6),
-reg_date TIMESTAMP
-)";
-	//Check if successfully created table
-		if ($conn->query($sql) === TRUE) {
-    		echo "Spiel " . $gamename . "erfolgreich erstellt.";
+
+//} else {
+
+			// sql to create table
+			$sql = "CREATE TABLE $session (
+				id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+				name VARCHAR(30) NOT NULL,
+				seat INT(6),
+				reg_date TIMESTAMP
+			)";
+ 			//Check if successfully created table
+			if ($mysqli->query($sql) === TRUE) {
+  			echo "Session " . $session . " successfully created.";
 			} else {
-    		//echo "Error creating game (table): " . $conn->error;
+  			//die("Error creating Session (table): " . $conn->error);
+				echo "Session " . $session . " succesfully joined."; // Yeah I know it's not pretty...
 			}
 //}
 
 
-
-// Variables written into MySQL
-//$message	= 'How Can Mirrors Be Real If Our Eyes Arent Real';
-// WARNING/To-Do: Problems with Apostrophes etc. for writing into MySQL
-
-// Check if variables already exist in table of database
-$sql = "SELECT id";
-
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {}
-
 // Write into Database
+if ($stmt = $mysqli->prepare("INSERT INTO $session (name, seat) VALUES (?, ?)")) {
+	/* Bind the variables to the parameter as strings */
+	$stmt->bind_param("ss", $name, $seat);
 
-$sql = "INSERT INTO $gamename (username, playernumber)
-VALUES ('$gameusername', '$playernumber')";
+	/* Execute the statement */
+	$stmt->execute();
 
-// Check Connection
-if ($conn->query($sql) === TRUE) {
-	echo "New record created successfully";
-} else {
-	echo "Error: " . $sql . "<br>" . $conn->error;
+	/* close statement */
+	$stmt->close();
 }
 
 // Close Connection
-$conn->close();
-setcookie("username", $gameusername, time()+86400);
+$mysqli->close();
 
-if(!isset($_COOKIE['username'])) {
-	print 'Cookie doesnt exist';
-} else{
-	print 'Cookie exists';
-}
-echo $_POST[''];
 
+setcookie("session", $session, time()+86400);
+setcookie("seat", $seat, time()+86400);
+setcookie("name", $name, time()+86400);
 ?>
 <p><a href="game.php">AUF IN DEN KAMPF, TORERO</a></p>
+</div>
+
+</div>
+
 </body>
-
-
 </html>

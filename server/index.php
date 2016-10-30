@@ -1,31 +1,40 @@
 <!-- index.php -->
-<html>
+<?php
+setcookie("session", "", time()-3600);
+setcookie("seat", "", time()-3600);
+setcookie("name", "", time()-3600);
+?>
+<!DOCTYPE html>
+
+<html lang="de">
+
 <head>
 	<meta charset="utf-8">
-
 	<title>Secret Wolf</title>
-	
-	<link rel="stylesheet" type="text/css" href="style.css" />
-	
-	<link href="https://fonts.googleapis.com/css?family=UnifrakturMaguntia" rel="stylesheet">
+	<meta name="description" content="Very Game, Much Secret, Many Awesome">
 
+	<link rel="stylesheet" type="text/css" href="style.css" media="screen">
+	<link href="https://fonts.googleapis.com/css?family=UnifrakturMaguntia" rel="stylesheet" type='text/css'>
 
 </head>
 
-<body style=>
+<body>
+	<div class="wrapper">
 
+		<div class="header">
+			<p class="caption">Secret Wolf</p>
+		</div>
 
+		<div class="content">
+			<form action="connect.php" method="post">
+				<p>Session: <input type="text" name="session"/></p>
+				<p>Seat: <input type="number" name="seat" /></p>
+				<p>Name: <input type="text" name="name" /></p>
+				<p> <input type="submit" class="inputbutton" value="Bestätigen"/></p>
+			</form>
+		</div>
 
-<form action="connect.php" method="post">
-<img src="addi.jpg" width="200px"></img>
-<p>Dein Spielname: <input type="text" name="gamename"/></p>
-<p>Dein Name: <input type="text" name="username" /></p>
-<p>Deine Spielernummer: <input type="number" name="playernumber" /></p>
-<p> <input type="submit" value="Bestätigen"/></p>
-
-
-</form>
-
+	</div>
 
 </body>
 </html>

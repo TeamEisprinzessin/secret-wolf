@@ -1,10 +1,58 @@
 /*style.css*/
 * {padding: 0; margin: 0;}
+html, body  {
+	background-color: black;
+	height:100%;
+}
+.wrapper {
+	height:100%;
 
-body {
+}
+.header {
 	font-family: 'UnifrakturMaguntia', cursive;
 	font-weight: 400;
-	font-size: 5em;
 	background-color: #38322b;
-	color: #e36248;	
+	color: #e36248;
+	float:left;
+	width:100%;
+}
+.header > p {
+	padding: 0.2em;
+	font-size: 2em;
+}
+.header > .caption {
+	font-size: 5em;
+}
+.content {
+	font-family: 'Lato';
+	font-size: 1em;
+	background-color: #f8e2c2;
+	/*overflow: auto;*/
+	height:auto;
+	min-height: 100%;
+}
+form {
+	padding: 2em;
+}
+input {
+	background-color: transparent;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: solid;
+}
+.inputbutton {
+	border: solid;
+	background-color: #38322b;
+	color: white;
+}
+.inputbutton:hover {
+	background-color: grey;
+}
+.inputbutton:active  {
+	background-color: black;
+	color: white;
+}
+.content p {
+	padding: 0.2em;
 }
