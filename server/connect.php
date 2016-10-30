@@ -51,7 +51,8 @@ if (mysqli_connect_errno()) {
 				id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 				name VARCHAR(30) NOT NULL,
 				seat INT(6),
-				reg_date TIMESTAMP
+				reg_date TIMESTAMP,
+				identity INT(6)
 			)";
  			//Check if successfully created table
 			if ($mysqli->query($sql) === TRUE) {
@@ -64,7 +65,7 @@ if (mysqli_connect_errno()) {
 
 
 // Write into Database
-if ($stmt = $mysqli->prepare("INSERT INTO $session (name, seat) VALUES (?, ?)")) {
+if ($stmt = $mysqli->prepare("INSERT INTO $session (name, seat, identity) VALUES (?, ?, 0)")) {
 	/* Bind the variables to the parameter as strings */
 	$stmt->bind_param("ss", $name, $seat);
 
@@ -83,6 +84,7 @@ setcookie("session", $session, time()+86400);
 setcookie("seat", $seat, time()+86400);
 setcookie("name", $name, time()+86400);
 ?>
+
 <p><a href="game.php">AUF IN DEN KAMPF, TORERO</a></p>
 </div>
 

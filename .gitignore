@@ -1,2 +1,4 @@
 # Local Credentials #
 credentials.php
+log.html
+server/sessions/**
