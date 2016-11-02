@@ -30,6 +30,7 @@
 							<input name="usermsg" type="text" id="usermsg" size="63" />
 							<input name="submitmsg" type="submit" id="submitmsg" value="Send" />
 						</form>
+						<a href="destiny.php">COME ON BARBIE LETS GO PARTY</a>
 
 		</div>
 
@@ -42,7 +43,7 @@
 		// jQuery Document
 		$(document).ready(function(){
 			var seat = readCookie('seat')
-			var clientmsg = "Seat: " + seat + " - Entered the game";
+			var clientmsg = "Seat: " + seat + " - Joined the game";
 			$.post("post.php", {text: clientmsg});
 		});
 

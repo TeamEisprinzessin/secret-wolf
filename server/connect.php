@@ -85,7 +85,7 @@ setcookie("seat", $seat, time()+86400);
 setcookie("name", $name, time()+86400);
 ?>
 
-<p><a href="game.php">AUF IN DEN KAMPF, TORERO</a></p>
+<p><a href="pregame.php">AUF IN DEN KAMPF, TORERO</a></p>
 </div>
 
 </div>
