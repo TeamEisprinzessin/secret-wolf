@@ -1,0 +1,22 @@
+* {
+  padding: 0; margin: 0;
+}
+
+.wrapper {
+  background-color: #ff69b4;
+}
+.header {
+  height:3em;
+  background-color: green;
+}
+.sidebar  {
+  width: 7em;
+  float:left;
+  background-color: blue;
+
+}
+.content {
+  background-color: yellow;
+  padding: 0.5em;
+  padding-left: 10em;
+}
