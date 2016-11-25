@@ -1,3 +1,4 @@
+<!-- destiny.php -->
 <?php
 
 include "credentials.php";
@@ -10,17 +11,15 @@ if (mysqli_connect_errno()) {
 	die("Connection failed: " . mysqli_connect_error());
 }
 
-
-
 $sql = $mysqli->prepare("SELECT * FROM $session");
 $sql->execute();
 $sql->store_result();
 
-// $total = Gesamtanzahl Spieler
+// $total = total amount of players (Counted by number of entries in MySQL-table)
 $total = $sql->num_rows;
 
 
-// Identities: 0 = liberal; 1 = fascist; 2 = Hitler
+// Possible identities: 0 = liberal; 1 = fascist; 2 = Hitler
 // WARNING: VERY PROFESSIONAL ROLE GENERATION INCOMING!
 if ($total == 5){
 	$identities = [0,0,0,1,2];
@@ -35,11 +34,12 @@ if ($total == 5){
 } elseif ($total == 10){
 	$identities = [0,0,0,0,0,0,1,1,1,2];
 } else {
-	echo("This Game shall only be played amongst a gathering of five to ten participants. Ple4se ch3ck ur numb0r5 m8");
+	echo("This game shall only be played amongst a gathering of five to ten participants. Ple4se ch3ck ur numb0r5 m8");
 }
-
 shuffle($identities);
 //var_dump($identities);
+
+// Allocate identities to players
 for ($i = 1; $i <= $total; $i++) {
 	$ii = $i - 1;
 	$currentrole = $identities[$ii];

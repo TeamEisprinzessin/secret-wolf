@@ -1,4 +1,4 @@
-<!-- index.php -->
+<!-- pregame.php -->
 <!DOCTYPE html>
 
 <html lang="de">
@@ -30,34 +30,31 @@
 							<input name="usermsg" type="text" id="usermsg" size="63" />
 							<input name="submitmsg" type="submit" id="submitmsg" value="Send" />
 						</form>
-						<a href="destiny.php">COME ON BARBIE LETS GO PARTY</a>
+						<a href="destiny.php">Enter Game</a>
 
 		</div>
 
-
-
-
-
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
 		<script type="text/javascript">
-		// jQuery Document
+
+		// javascript and php code related to writing and reading the chat log is modified from this tutorial: "https://code.tutsplus.com/tutorials/how-to-create-a-simple-web-based-chat-application--net-5931"
+
+		// Write "...Joined the game"-Message
 		$(document).ready(function(){
 			var seat = readCookie('seat')
 			var clientmsg = "Seat: " + seat + " - Joined the game";
 			$.post("post.php", {text: clientmsg});
 		});
 
-
-		//If user submits the form
+		// Write Custom Message on Form-Submit
 		$("#submitmsg").click(function(){
 			var clientmsg = $("#usermsg").val();
 			$.post("post.php", {text: clientmsg});
 			$("#usermsg").attr("value", "");
-		return false;
-
+			return false;
 		});
 
-		// get session variable
+		// Way too complicated function to read cookies in javascript
 		function readCookie(name) {
 			var nameEQ = name + "=";
 			var ca = document.cookie.split(';');
@@ -69,7 +66,7 @@
 			return null;
 		}
 
-		//Load the file containing the chat log
+		// Load the file containing the chat log (sessions/[session].html)
 		function loadLog(){
 			var sessionname = readCookie('session')
 			$.ajax({
