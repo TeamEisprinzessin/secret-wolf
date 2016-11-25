@@ -24,15 +24,22 @@
     <!-- Used for Conversion of html code to text: http://www.unit-conversion.info/texttools/text-to-html/#data -->
     <p class="code">&lt;html&gt;<br />&lt;head&gt;<br />&nbsp; &lt;meta charset="utf-8"&gt;<br />&nbsp; &lt;title&gt;Dokumentation&lt;/title&gt;<br />&nbsp; &lt;meta name="descritpion" content="Dokumentation f&uuml;r secretwolf"&gt;<br /><br />&nbsp; &lt;link rel="stylesheet" type="text/css" href="style.css" media="screen"&gt;<br />&nbsp;&nbsp; &lt;link href="https://fonts.googleapis.com/css?family=Muli|Open+Sans|Ubuntu+Mono" rel="stylesheet"&gt; <br />&lt;/head&gt;<br />&lt;body&gt;<br />&nbsp; &lt;div class="content"&gt;<br />&nbsp;&nbsp;&nbsp; &lt;h1&gt;Caption&lt;/h1&gt;<br />&nbsp;&nbsp;&nbsp; &lt;h2 id="introduction"&gt;Introduction&lt;/h2&gt;<br />&nbsp;&nbsp;&nbsp; &lt;p&gt;Hello World, this is a text.&lt;/p&gt;<br /><br />&nbsp;&nbsp;&nbsp; &lt;p class="code"&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; aasdf<br />&nbsp;&nbsp;&nbsp; &lt;/p&gt;<br />&nbsp; &lt;/div&gt;<br />&lt;/body&gt;<br />&lt;/html&gt;<br /><br /></p>
     <h2 id="Konzept">Erklärung des Konzepts</h2>
-    <p>Bei der Programmierung unseres Projektes sind auf verschiedene Art und Weise Probleme aufgetaucht, welchen wir uns gestellt und diese schließlich gelöst haben. Im Folgeneden werden einige dieser Probleme mit Hilfe von den Quellcodes aus unserem Projekt erklärt, so dass die leichter verständlich sind. </p>
-    <h2 id=MySQL> Einbindung von MySQL</h2>
-    <h3 id=VerbindungMySQL>1. Verbindung mit der MySQL-Datenband herstellen</h3>
+    <p>Bei der Programmierung unseres Projektes sind auf verschiedene Art und Weise Probleme aufgetaucht, welchen wir uns gestellt und diese schließlich gelöst haben. Im Folgenden werden einige dieser Probleme mit Hilfe von den Quellcodes aus unserem Projekt erklärt, so dass diese leichter verständlich sind. </p>
+    <h2 id="MySQL"> Einbindung von MySQL</h2>
+    <h3 id="VerbindungMySQL">1. Verbindung mit der MySQL-Datenband herstellen</h3>
     <p class="code">&lt;p&gt;$mysqli = new mysqli($servername, $username, $password, $dbname);&lt;/p&gt;<br />&lt;p&gt;if (mysqli_connect_errno()) {&lt;br /&gt; die("Connection failed: " . mysqli_connect_error());&lt;br /&gt;}&lt;/p&gt;</p>
     <p>Die Verbindung mit der MySQL-Datenbank steht am Anfang des Dokuments und wird mit Hilfe des Befehls "mysqli_connect" hergestellt. Hierbei benötigt der Befehl den Servernamen, den Benutzernamen, Kennwort und die gewünschte Datenbank. In unserem Fall haben wir diese Daten durch Variablen definiert, da wir im späteren Verlauf die Datenbank durch die Datenbankverbindung ansprechen möchten. Außerdem ist es sinnvoll nach der Verbindung mit der MySQL-Datenbank zu überprüfen, ob die Verbindung erfolgreich hergestellt wurde. Dies lässt sich mit Hilfe von einem if-Befehl mit folgender Ausgabe einer Fehlermeldung wie beispielsweise "Connection failed" bewirken.  </p>
-    <h3 id=ErstellenEinträge>2. Erstellen von Beiträgen</h3>
+    <h3 id="ErstellenEinträge">2. Erstellen von Beiträgen</h3>
     <p> </p>
-    <h3 id=Auslesung>3. Auslesung von Einträgen</h3>
+    <h3 id="Auslesung">3. Auslesen von Einträgen</h3>
     <p> </p>
+    <h2 id="AuslesenInfos">Auslesen der Anmeldeinformationen</h2>
+    <p> </p>
+    <h2 id="Chat">Einbindung eines Chats</h2>
+    <p> </p>
+    <h2 id="Cookies">Erstellen von Cookies</h2>
+    <p> </p>
+    
     
   </div>
 </body>
