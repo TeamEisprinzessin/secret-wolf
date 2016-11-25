@@ -27,6 +27,7 @@
     <p>Bei der Programmierung unseres Projektes sind auf verschiedene Art und Weise Probleme aufgetaucht, welchen wir uns gestellt und diese schließlich gelöst haben. Im Folgeneden werden einige dieser Probleme mit Hilfe von den Quellcodes aus unserem Projekt erklärt, so dass die leichter verständlich sind. </p>
     <h2 id=MySQL> Einbindung von MySQL</h2>
     <h3 id=VerbindungMySQL>1. Verbindung mit der MySQL-Datenband herstellen</h3>
+    <p class="code">$mysqli = new mysqli($servername, $username, $password, $dbname);if (mysqli_connect_errno()) {<br /> die("Connection failed: " . mysqli_connect_error());<br />}
     <p>Die Verbindung mit der MySQL-Datenbank steht am Anfang des Dokuments und wird mit Hilfe des Befehls "mysqli_connect" hergestellt. Hierbei benötigt der Befehl den Servernamen, den Benutzernamen, Kennwort und die gewünschte Datenbank. In unserem Fall haben wir diese Daten durch Variablen definiert, da wir im späteren Verlauf die Datenbank durch die Datenbankverbindung ansprechen möchten. Außerdem ist es sinnvoll nach der Verbindung mit der MySQL-Datenbank zu überprüfen, ob die Verbindung erfolgreich hergestellt wurde. Dies lässt sich mit Hilfe von einem if-Befehl mit folgender Ausgabe einer Fehlermeldung wie beispielsweise "Connection failed" bewirken.  </p>
     <h3 id=ErstellenEinträge>2. Erstellen von Beiträgen</h3>
     <p> </p>
