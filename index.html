@@ -38,16 +38,18 @@
     <p class="code"></p>
     //connect.php 35-39
     <p>Die Verbindung mit der MySQL-Datenbank steht am Anfang des Dokuments und wird mit Hilfe des Befehls "mysqli_connect" hergestellt. Hierbei benötigt der Befehl den Servernamen, den Benutzernamen, Kennwort und die gewünschte Datenbank. In unserem Fall haben wir diese Daten durch Variablen definiert, da wir im späteren Verlauf die Datenbank durch die Datenbankverbindung ansprechen möchten. Außerdem ist es sinnvoll nach der Verbindung mit der MySQL-Datenbank zu überprüfen, ob die Verbindung erfolgreich hergestellt wurde. Dies lässt sich mit Hilfe von einem if-Befehl mit folgender Ausgabe einer Fehlermeldung wie beispielsweise "Connection failed" bewirken.  </p>
-    <h3 id="ErstellenTabelle">Erstellen von Tabellen </h3>
+    <h3 id="ErstellenTabelle">2. Erstellen von Tabellen </h3>
     <p>Nachdem die MySQL-Verbindung hergestellt wurde, möchten wir in die Datenbank schreiben. Dafür benötigen wir eine Tabelle mit den Informationen des Spielers, welcher sich mit dem Spiel verbinden möchte. Diese Tabelle erhalten wir mit Hilfe des folgenenden Befehls:</p>
     <p class="code"></p> 
     //connect.php 44-50
-    <p>Bei diesem Befehl erstellen wir eine Tabelle für die Session, welche der Benutzer in der Benutzeranmeldung eingegeben hatte. Die Tabelle erhält eine einzigartige ID in der Datenbank als Schlüssel zum Wiederfinden und damit nicht andere Tabellen mit dieser vertauscht werden. Mit Hilfe dieses Befehls wird eine Spalte für den Namen, in unserem Falle darf dieser Name nicht mehr als 30 Zeicen [VARCHOR(30)] beinhalten, und eine Spalte für den Sitzplatz und die Identität, wobei diese beiden Spalten ausschließlich mit Zahlen befüllt werden dürfen [INT(6)]. Was es genau mit der Identität auf sich hat gehen in der <a href="Rollenverteilung">Rollenverteilung</a>ein. </p>
-    <h3 id="BeschreibenTabelle">Beschreiben der Tabellen </h3>
+    <p>Bei diesem Befehl erstellen wir eine Tabelle für die Session, welche der Benutzer in der Benutzeranmeldung eingegeben hatte. Die Tabelle erhält eine einzigartige ID in der Datenbank als Schlüssel zum Wiederfinden und damit nicht andere Tabellen mit dieser vertauscht werden. Mit Hilfe dieses Befehls wird eine Spalte für den Namen, in unserem Falle darf dieser Name nicht mehr als 30 Zeicen [VARCHOR(30)] beinhalten, und eine Spalte für den Sitzplatz und die Identität, wobei diese beiden Spalten ausschließlich mit Zahlen befüllt werden dürfen [INT(6)]. Was es genau mit der Identität auf sich hat gehen in der <a href="Rollenverteilung">Rollenverteilung</a> ein. </p>
+    <h3 id="BeschreibenTabelle">3. Beschreiben der Tabellen </h3>
     <p> </p>
-    <h3 id="Auslesung">3. Auslesen von Einträgen</h3>
+    <p class="code"></p>
+    //connect.php 61-66
+    <h3 id="Auslesung">4. Auslesen von Einträgen</h3>
     <p> </p>
-    <h3 id="Rollenverteilung">4. Rollenverteilung</h3>
+    <h3 id="Rollenverteilung">5. Rollenverteilung</h3>
     <p>Die Rollenverteilung geschieht ebenfalls in der MySQL-Tabelle. Zuerst werden die Einträge in der Tabelle gezählt und als gesamte Anzahl von Spielers festgehalten. Sind zum Beispiel 6 Einträge in der Tabelle vorhanden, wird die gesamte Anzahl an Spielern auf 6 gesetzt. Anschließend wird ausgewählt wie viele Identiäten gebraucht werden. In unserem Beispiel wären es 6 Identitäten, so dass die Identitäten 0,0,0,0,1,2 ausgewählt werden. Das Spiel ist nur mit minimal 5 und maximal 10 Spielern spielbar, weshalb die Verbindung bei weniger oder mehr Spielern unterbrochen wird und eine Fehlermeldung durch den Befehl echo auf dem Bildschirm des Spielers sichtbar ist. Die Identitäten werden mit Hilfe des Befehls shuffle($identities) gemischt und im folgenden Schritt an jeden einzelnen Spieler verteilt. ?????? </p>
     <p> </p>
     <h2 id="Cookies">Cookies</h2>
