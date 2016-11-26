@@ -25,9 +25,9 @@
     <p class="code">&lt;html&gt;<br />&lt;head&gt;<br />&nbsp; &lt;meta charset="utf-8"&gt;<br />&nbsp; &lt;title&gt;Dokumentation&lt;/title&gt;<br />&nbsp; &lt;meta name="descritpion" content="Dokumentation f&uuml;r secretwolf"&gt;<br /><br />&nbsp; &lt;link rel="stylesheet" type="text/css" href="style.css" media="screen"&gt;<br />&nbsp;&nbsp; &lt;link href="https://fonts.googleapis.com/css?family=Muli|Open+Sans|Ubuntu+Mono" rel="stylesheet"&gt; <br />&lt;/head&gt;<br />&lt;body&gt;<br />&nbsp; &lt;div class="content"&gt;<br />&nbsp;&nbsp;&nbsp; &lt;h1&gt;Caption&lt;/h1&gt;<br />&nbsp;&nbsp;&nbsp; &lt;h2 id="introduction"&gt;Introduction&lt;/h2&gt;<br />&nbsp;&nbsp;&nbsp; &lt;p&gt;Hello World, this is a text.&lt;/p&gt;<br /><br />&nbsp;&nbsp;&nbsp; &lt;p class="code"&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; aasdf<br />&nbsp;&nbsp;&nbsp; &lt;/p&gt;<br />&nbsp; &lt;/div&gt;<br />&lt;/body&gt;<br />&lt;/html&gt;<br /><br /></p>
     <h2 id="Konzept">Erklärung des Konzepts</h2>
     <p>Bei der Programmierung unseres Projektes sind auf verschiedene Art und Weise Probleme aufgetaucht, welchen wir uns gestellt und diese schließlich gelöst haben. Im Folgenden werden einige dieser Probleme mit Hilfe von den Quellcodes aus unserem Projekt erklärt, so dass diese leichter verständlich sind. </p>
-    <h2 id="Anmeldung">Anmeldung</h2>
-    <h3 id="ErstellenAnmeldung">1. Erstellen einer Anmeldeseite</h3>
-    <p>Für unser Spiel benötigen wir eine Anmeldeseite, wo sich jeder einzelne Spieler mit seinem Namen anmelden kann. Dies geschieht in einem HTML-Dokument, in welchem wir das Dokument zuerst in einen Wrapper-, Header- und Contentbereich unterteilt haben. Der Header beinhaltet den Titel unseres Spiels "Secret Wolf". Im Content-Bereich sind die nötigen Anmeldeinformationen wie der Sessionname, der Sitzplatz und der Name des Spielers verankert. Hierbei erstellen wir ein Textfeld hinter den für uns wichtigen Informationen. In dieses Textfeld kann des Spieler nun für die Session und für den Namen einen beliebigen Text eingeben. Für den Sitzplatz haben wir allerdings das Textfeld mit Hilfe von type="number" auf eine Nummer beschränkt. Außerdem haben wir einen Bestätigungsbutton implementiert mit der Bezeichnung "Bestätigen".  </p>
+    <h2 id="Anmeldung">Benutzeranmeldung</h2>
+    <h3 id="ErstellenAnmeldung">1. Erstellen einer Benutzeranmeldeseite</h3>
+    <p>Für unser Spiel benötigen wir eine Benutzeranmeldung, wo sich jeder einzelne Spieler mit seinem Namen anmelden kann. Dies geschieht in einem HTML-Dokument, in welchem wir das Dokument zuerst in einen Wrapper-, Header- und Contentbereich unterteilt haben. Der Header beinhaltet den Titel unseres Spiels "Secret Wolf". Im Content-Bereich sind die nötigen Anmeldeinformationen wie der Sessionname, der Sitzplatz und der Name des Spielers verankert. Hierbei erstellen wir mit Hilfe des input-Befehls ein Textfeld hinter den für uns wichtigen Informationen. In dieses Textfeld kann der Spieler nun für die Session und für den Namen einen beliebigen Text eingeben. Für den Sitzplatz haben wirs das Textfeld mit Hilfe von type="number" (für einen Text innerhalb des Textfeldes steht im input-Befehl type="text") ausschließlich auf Nummern beschränkt. Zuletzt bietet ein Bestätigungsbutton, welcher wiederum durch den input-Befehl erstellt wurde, die Möglichkeit die Informationen abzuschicken und zur nächsten Seite zu gelangen. Der Unterschied bei diesem input-Befehl ist, dass der type auf submit gesetzt wurde. Submit bedeutet, dass das Formular abgesedet wird mit den Werten innerhalb der Textfelder. Value innerhalb des Befehls beschreibt die Bezeichnung des Buttons auf der HTML-Seite.</p>
     <p class="code"></p>
     //index.php 22-37
     <h3 id="AuslesenAnmeldung">2. Auslesen der Benutzereingaben</h3>
@@ -38,22 +38,26 @@
     <p class="code"></p>
     //connect.php 35-39
     <p>Die Verbindung mit der MySQL-Datenbank steht am Anfang des Dokuments und wird mit Hilfe des Befehls "mysqli_connect" hergestellt. Hierbei benötigt der Befehl den Servernamen, den Benutzernamen, Kennwort und die gewünschte Datenbank. In unserem Fall haben wir diese Daten durch Variablen definiert, da wir im späteren Verlauf die Datenbank durch die Datenbankverbindung ansprechen möchten. Außerdem ist es sinnvoll nach der Verbindung mit der MySQL-Datenbank zu überprüfen, ob die Verbindung erfolgreich hergestellt wurde. Dies lässt sich mit Hilfe von einem if-Befehl mit folgender Ausgabe einer Fehlermeldung wie beispielsweise "Connection failed" bewirken.  </p>
-    <h3 id="ErstellenEinträge">2. Erstellen von Einträgen</h3>
-    <p>Nachdem die MySQL-Verbindung hergestellt wurde, möchten wir in die Datenbank schreiben. Dafür benötigen wir einen Tabelle mit den Informationen des Spielers, welcher sich mit dem Spiel verbinden möchte. Diese Tabelle erhalten wir mit Hilfe des folgenenden Befehls erstellen:</p>
+    <h3 id="ErstellenTabelle">Erstellen von Tabellen </h3>
+    <p>Nachdem die MySQL-Verbindung hergestellt wurde, möchten wir in die Datenbank schreiben. Dafür benötigen wir eine Tabelle mit den Informationen des Spielers, welcher sich mit dem Spiel verbinden möchte. Diese Tabelle erhalten wir mit Hilfe des folgenenden Befehls:</p>
     <p class="code"></p> 
     //connect.php 44-50
-    <p>Bei diesem Befehl erstellen wir die Tabelle mit dem Namen der Session, welche der Spieler auf der Anmeldeseite eingibt. Die Tabelle erhält eine einzigartige ID in der Datenbank als Schlüssel zum Wiederfinden und damit nicht andere Tabellen mit dieser vertauscht werden. Mit Hilfe des Befehls werden der Name, der in unserem Falle nicht mehr als 30 Zeichen beinhalten darf [VARCHAR (30)], und der Sitzplatz, welcher nur in Zahlen angegeben werden darf [INT(6)], von der Anmeldeseite übernommen und in die Datenbank geschrieben. Auf die Identitätsverteilung gehen wir später bei der <a href=#Rollenverteilung>Rollenverteilung</a> ein. 
+    <p>Bei diesem Befehl erstellen wir eine Tabelle für die Session, welche der Benutzer in der Benutzeranmeldung eingegeben hatte. Die Tabelle erhält eine einzigartige ID in der Datenbank als Schlüssel zum Wiederfinden und damit nicht andere Tabellen mit dieser vertauscht werden. Mit Hilfe dieses Befehls wird eine Spalte für den Namen, in unserem Falle darf dieser Name nicht mehr als 30 Zeicen [VARCHOR(30)] beinhalten, und eine Spalte für den Sitzplatz und die Identität, wobei diese beiden Spalten ausschließlich mit Zahlen befüllt werden dürfen [INT(6)]. Was es genau mit der Identität auf sich hat gehen in der <a href="Rollenverteilung">Rollenverteilung</a>ein. </p>
+    <h3 id="BeschreibenTabelle">Beschreiben der Tabellen </h3>
+    <p> </p>
     <h3 id="Auslesung">3. Auslesen von Einträgen</h3>
     <p> </p>
     <h3 id="Rollenverteilung">4. Rollenverteilung</h3>
     <p>Die Rollenverteilung geschieht ebenfalls in der MySQL-Tabelle. Zuerst werden die Einträge in der Tabelle gezählt und als gesamte Anzahl von Spielers festgehalten. Sind zum Beispiel 6 Einträge in der Tabelle vorhanden, wird die gesamte Anzahl an Spielern auf 6 gesetzt. Anschließend wird ausgewählt wie viele Identiäten gebraucht werden. In unserem Beispiel wären es 6 Identitäten, so dass die Identitäten 0,0,0,0,1,2 ausgewählt werden. Das Spiel ist nur mit minimal 5 und maximal 10 Spielern spielbar, weshalb die Verbindung bei weniger oder mehr Spielern unterbrochen wird und eine Fehlermeldung durch den Befehl echo auf dem Bildschirm des Spielers sichtbar ist. Die Identitäten werden mit Hilfe des Befehls shuffle($identities) gemischt und im folgenden Schritt an jeden einzelnen Spieler verteilt. ?????? </p>
     <p> </p>
-    <h2 id="Chat">Einbindung eines Chats</h2>
-    <p> </p>
     <h2 id="Cookies">Cookies</h2>
     <p>Cookies sind Datensätze, die von einem Webserver auf dem Computer des Benutzers abgelegt werden. Sie werden bei einer erneuten Verbindung an den Webserver mit dem Ziel zurückgesedet, den Nutzer und seine Einstellungen wiederzuerkennen. Dies geschieht durch die Anlegung einer lokalen Datei auf dem Computer des Nutzers, welche dem Benutzer eine bestimmte Identität (ähnlich zur ID bei dem <a href="#ErstellenEinträge">Erstellen eines MySQL-Eintrags</a>) zuweist.</p>
     <h3 id="ErstellenCookies">Erstellen von Cookies</h3>
     <p> </p>
+    <h3 id="AuslesenCookies">Auslesen von Cookies</h3>
+    <h2 id="Chat">Einbindung eines Chats</h2>
+    <p> </p>
+    
       
     
     
