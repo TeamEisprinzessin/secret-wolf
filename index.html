@@ -63,16 +63,19 @@
     <p>Das Auslesen funktioniert ebenso simpel, der Wert wird hier in eine Variable geschrieben.</p>
     <p class="code">$session = $_COOKIE['session'];</p>
     <h2 id="Chat">Einbindung eines Chats</h2>
-    <p> </p>
+    <p>Der Chat ist eigentlich kein wichtiger Teil unseres Projekts, weil das Spiel vorzugsweise mit allen Mitspielern lokal an einem Tisch gespielt werden soll, er soll in der weiteren Entwicklung des Projekts mehr dafür verwendet werden, dass der Ablauf des Spiels festgehalten und an alle Teilnehmer weitergegeben wird.</p>
+    <p>In den Grundzügen ist der Chatbereich nur ein einfaches HTML-Dokument, dass von einem PHP-Dokument bei Änderungen neu beschrieben wird und von jedem Spieler regelmäßig per javascript ausgelesen wird. Mithilfe einer Form werden in game.php und pregame.php (die Seiten mit einem Chat-Feld) Strings (Variablen in Textform) an das Dokument post.php weitergegeben (damit dafür die Seite nicht neu geladen werden muss, wird hier javascript verwendet).</p>
+    <p class="code">$("#submitmsg").click(function(){<br />&nbsp;&nbsp; &nbsp;var clientmsg = $("#usermsg").val();<br />&nbsp;&nbsp; &nbsp;$.post("post.php", {text: clientmsg});<br />&nbsp;&nbsp; &nbsp;$("#usermsg").attr("value", "");<br />&nbsp;&nbsp; &nbsp;return false;<br />});</p>
+    <p>In post.php wird dann im Unterordner sessions (der erstellt wird, wenn er noch nicht existiert) eine HTML-Datei mit dem Namen der Session kreirt. Hier wird HTML-Code mit dem vorher spezifizierten Inhalt reingeschrieben, bzw. dazugeschrieben, sofern diese Datei schon existiert.</p>
+    <p class="code">session_start();<br />if(isset($_COOKIE['name'])){<br />&nbsp; $text = $_POST['text'];<br /><br />&nbsp; if (!file_exists('sessions/')) {<br />&nbsp; &nbsp;&nbsp; &nbsp;mkdir('sessions/', 0777, true);<br />&nbsp; }<br /><br />&nbsp; $filename = "sessions/" . $_COOKIE["session"] . ".html";<br />&nbsp; $fp = fopen($filename, 'a');<br />&nbsp; fwrite($fp, "&lt;div&gt;(".date("g:i A").") &lt;b&gt;".$_COOKIE['name']."&lt;/b&gt;: ".stripslashes(htmlspecialchars($text))."&lt;br&gt;&lt;/div&gt;");<br />&nbsp; fclose($fp);<br />}</p>
+    <p>Das Auslesen des Chats ist nicht besonders kompliziert, da letztendlich die gesamte HTML-Datei, in der der Chat-Inhalt heruntergeschrieben wurde, einfach nur unverändert ins Dokument hereinkopiert wird. Dieser Vorgang geschieht jede Sekunde erneut, damit die Neuerungen sofort angezeigt werden. (Ohne, dass der Nutzer die Seite neu laden muss.)</p>
+    <p class="code">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; function loadLog(){<br />&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;var sessionname = readCookie('session')<br />&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;$.ajax({<br />&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;url: "sessions/" + sessionname + ".html",<br />&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;cache: false,<br />&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;success: function(html){<br />&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;$("#chatbox").html(html); //Insert chat log into the #chatbox div<br />&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;},<br />&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;});<br />&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;}<br />&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; &nbsp;setInterval (loadLog, 1000);&nbsp;&nbsp; &nbsp;//Reload file (in ms)</p>
     <h2 id="CSS">CSS (Cascading Style Sheets)</h2>
-    <p>CSS ist eine Stilsprache, die das Aussehn von HTML-Dokumenten definiert. Zum Beispiel kann CSS zum Festlegen von Schriftarten, Farben, Hintergrundbildern und Positionierungen verwendet werden. Der Unterschied zwischen HTML und CSS ist, dass HTML den Inhalt strukturiert und CSS den strukturierten Inhalt formatiert, dies bedeutet, dass der Schriftstil des Inhalts geändert wird. </p>
-    <h3 id="Schriftarten">1. Hinzufügen von Schriftarten</h3>
-    <p> </p>
-    <h3 id="Stil">2. Stil der Schrift ändern</h3>
-    <p> </p>
+    <p>CSS ist eine Stilsprache, die das Aussehen von HTML-Dokumenten definiert. Zum Beispiel kann CSS zum Festlegen von Schriftarten, Farben, Hintergrundbildern und Positionierungen verwendet werden. Der Unterschied zwischen HTML und CSS ist, dass HTML den Inhalt strukturiert und CSS den strukturierten Inhalt formatiert. Es ist üblich, den CSS-Code in eine unabhängige Datei auszulagern, damit das Design aller im Projekt vorhandenen HTML-Dateien an einer zentralen Stelle bearbeitet werden kann.</p>
+    <h3 id="stylesheet">1. CSS-Dokument verlinken</h3>
+    <p>Im <em>head</em>-Bereich der HTML-Dokumente wird mit folgendem Befehl das CSS-Dokument eingebunden:</p>
+    <p class="code">&lt;link rel="stylesheet" type="text/css" href="style.css" media="screen"&gt;</p>
       
-    
-    
   </div>
 </body>
 </html>
