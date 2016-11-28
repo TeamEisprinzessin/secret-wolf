@@ -20,7 +20,7 @@
     </p>
     <h2>Struktur und Aufbau</h2>
     <p class="code">
-    <img src="documentation/layout.svg" style="max-width: 70em;"></p>
+    <img src="documentation/layout.svg"></p>
     <!-- Used for Conversion of html code to text: http://www.unit-conversion.info/texttools/text-to-html/#data -->
     <h2 id="Konzept">Erklärung des Konzepts</h2>
     <p>Bei der Programmierung unseres Projektes sind auf verschiedene Art und Weise Probleme aufgetaucht, welchen wir uns gestellt und diese schließlich gelöst haben. Im Folgenden werden einige dieser Probleme mit Hilfe von den Quellcodes aus unserem Projekt erklärt, so dass diese leichter verständlich sind. </p>
@@ -74,7 +74,12 @@
     <h3 id="stylesheet">1. CSS-Dokument verlinken</h3>
     <p>Im <em>head</em>-Bereich der HTML-Dokumente wird mit folgendem Befehl das CSS-Dokument eingebunden:</p>
     <p class="code">&lt;link rel="stylesheet" type="text/css" href="style.css" media="screen"&gt;</p>
-      
+    <p>Bisher haben wir nur ein einfaches, simples Layout mit Header- und Contentbereich erstellt, daher ist der CSS-Code noch recht simpel. Ein paar Anpassungen, die wir gemacht haben, sind z.B:
+     <p class="code"><span class="pl-ent">*</span> {<span class="pl-c1"><span class="pl-c1">padding</span></span>: <span class="pl-c1">0</span>; <span class="pl-c1"><span class="pl-c1">margin</span></span>: <span class="pl-c1">0</span>;}</p>
+    <p>Standardmäßig fügen verschiedene Browser Elementen wie dem body (also dem gesamten angezeigten HTML-Dokument) einen Rand hinzu, das wollten wir verhindern, außerdem ist es unschön, wenn verschiedene Browser verschiedene Standardwerte hierfür anwenden.</p>
+    <p>Eine weitere Design-Entscheidung:</p>
+    <p class="code">input {<br />&nbsp;&nbsp; &nbsp;background-color: transparent;<br />&nbsp;&nbsp; &nbsp;border-top: none;<br />&nbsp;&nbsp; &nbsp;border-left: none;<br />&nbsp;&nbsp; &nbsp;border-right: none;<br />&nbsp;&nbsp; &nbsp;border-bottom: solid;<br />}</p>
+    <p>Hiermit werden die <em>input</em>-Elemente, also insbesondere die Textfelder formatiert: Das (auch wiederum vom Browser abhängige) Standarddesign für Textfelder ist für unser dunkles Design zu hell, stattdessen haben wir hier die Hintergrundfarbe auf transparent gesetzt, und alle Ränder bis auf den unteren entfernt. <em>"solid"</em> steht in css für einen durchgängigen Strich.</p>
   </div>
 </body>
 </html>
